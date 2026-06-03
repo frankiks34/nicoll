@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Mi Amor ❤️</title>
+    <!-- Fuentes clásicas y cursivas para el estilo pergamino -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <style>
+        /* --- ESTILOS GLOBALES --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            /* Fondo oscuro tipo madera o mesa antigua para resaltar el pergamino */
+            background: linear-gradient(135deg, #2b1d15 0%, #170f0a 100%);
+            font-family: 'Lora', serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            perspective: 1500px;
+        }
+
+        /* --- CONTENEDOR PRINCIPAL --- */
+        .main-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            z-index: 5;
+        }
+
+        /* --- EL SOBRE TIPO KRAFT ANTIGUO --- */
+        .envelope-wrapper {
+            position: absolute;
+            width: 420px;
+            height: 260px;
+            cursor: pointer;
+            transition: transform 0.6s cubic-bezier(0.2, 1, 0.3, 1), opacity 0.5s ease;
+            transform-style: preserve-3d;
+        }
+
+        .envelope-wrapper:hover {
+            transform: scale(1.02) translateY(-5px);
+        }
+
+        .envelope {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background-color: #b58d66; /* Marrón kraft base */
+            border-radius: 4px 4px 12px 12px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), inset 0 0 30px rgba(70, 45, 20, 0.3);
+            background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');
+        }
+
+        /* Solapa superior */
+        .envelope::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            z-index: 3;
+            border-left: 210px solid transparent;
+            border-right: 210px solid transparent;
+            border-top: 150px solid #a37b54; 
+            transform-origin: top;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.1s, z-index 0.2s ease;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+        }
+
+        /* Solapas laterales e inferior */
+        .envelope::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            width: 0;
+            height: 0;
+            border-left: 210px solid #c29b74;
+            border-right: 210px solid #c29b74;
+            border-bottom: 130px solid #c9a37c;
+            border-top: 130px solid transparent;
+            border-radius: 0 0 12px 12px;
+            z-index: 4;
+        }
+
+        /* Sello de cera rojo intenso y clásico */
+        .wax-seal {
+            position: absolute;
+            top: 120px;
+            left: 185px;
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle, #a81c1c 0%, #750e0e 100%);
+            border-radius: 50%;
+            z-index: 6;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5), inset 0 2px 4px rgba(255,255,255,0.2);
+            border: 2px solid #570a0a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .wax-seal span {
+            color: #ffcccc;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+        }
+
+        /* --- LA CARTA ESTILO PERGAMINO VINTAGE --- */
+        .card {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 90%;
+            max-width: 650px;
+            height: 85vh;
+            /* Fondo de pergamino con bordes oscurecidos */
+            background-color: #eaddcf;
+            background-image: 
+                radial-gradient(circle at center, transparent 40%, rgba(120, 80, 40, 0.4) 110%),
+                url('https://www.transparenttextures.com/patterns/old-paper.png');
+            border-radius: 6px;
+            padding: 50px 45px 40px 45px;
+            z-index: -1;
+            opacity: 0;
+            transform: translate(-50%, -40%) scale(0.8);
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 
+                inset 0 0 60px rgba(100, 60, 20, 0.3), /* Quemado interior */
+                0 30px 70px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Elementos decorativos inspirados en la imagen original */
+        .rose-deco {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            font-size: 70px;
+            transform: rotate(-20deg);
+            filter: drop-shadow(3px 5px 4px rgba(0,0,0,0.4)) contrast(1.1) brightness(0.9);
+            z-index: 10;
+        }
+
+        .heart-deco {
+            position: absolute;
+            bottom: 35px;
+            right: 40px;
+            font-size: 35px;
+            color: #d11f1f;
+            filter: drop-shadow(2px 3px 3px rgba(0,0,0,0.3));
+            animation: beat 2s infinite;
+        }
+
+        @keyframes beat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Encabezado */
+        .card h1 {
+            font-size: 2.2rem;
+            color: #4a2e15;
+            text-align: center;
+            font-family: 'Dancing Script', cursive;
+            font-weight: 700;
+            margin-bottom: 25px;
+            flex-shrink: 0;
+            text-shadow: 1px 1px 1px rgba(255,255,255,0.4);
+            margin-left: 50px; /* Para no chocar con la rosa */
+        }
+
+        /* Cuerpo del mensaje pergamino */
+        .card-body {
+            overflow-y: auto;
+            flex-grow: 1;
+            padding-right: 15px;
+            padding-left: 5px;
+            margin-bottom: 15px;
+        }
+
+        .card-body p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #3b2a1a;
+            text-align: justify;
+            margin-bottom: 18px;
+            text-shadow: 0px 1px 1px rgba(255,255,255,0.2);
+        }
+
+        /* Scrollbar vintage disimulado */
+        .card-body::-webkit-scrollbar {
+            width: 6px;
+        }
+        .card-body::-webkit-scrollbar-track {
+            background: rgba(160, 110, 70, 0.1);
+            border-radius: 10px;
+        }
+        .card-body::-webkit-scrollbar-thumb {
+            background: #8c603a;
+            border-radius: 10px;
+        }
+
+        /* Firma estilo manuscrito */
+        .signature {
+            font-size: 2rem;
+            text-align: right;
+            color: #4a2e15;
+            font-family: 'Dancing Script', cursive;
+            margin-top: 15px;
+            margin-right: 80px; /* Espacio para el corazón */
+            flex-shrink: 0;
+            text-shadow: 1px 1px 1px rgba(255,255,255,0.4);
+        }
+
+        /* --- ESTADO ABIERTO INTERACTIVO --- */
+        .main-container.open .envelope-wrapper {
+            transform: translateY(150px) scale(0.7);
+            opacity: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .main-container.open .envelope::before {
+            transform: rotateX(180deg);
+            z-index: 1;
+        }
+
+        .main-container.open .wax-seal {
+            transform: scale(0);
+            opacity: 0;
+        }
+
+        .main-container.open .card {
+            opacity: 1;
+            z-index: 10;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        /* Texto de guía */
+        .instruction {
+            position: absolute;
+            bottom: -60px;
+            width: 100%;
+            text-align: center;
+            color: #c29b74;
+            font-size: 0.95rem;
+            letter-spacing: 2px;
+            font-family: 'Lora', serif;
+            text-transform: uppercase;
+            animation: softPulse 2.5s infinite;
+        }
+
+        @keyframes softPulse {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+
+        /* Responsivo celulares */
+        @media (max-width: 480px) {
+            .envelope-wrapper {
+                width: 320px;
+                height: 200px;
+            }
+            .envelope::before {
+                border-left: 160px solid transparent;
+                border-right: 160px solid transparent;
+                border-top: 115px solid #a37b54;
+            }
+            .envelope::after {
+                border-left: 160px solid #c29b74;
+                border-right: 160px solid #c29b74;
+                border-bottom: 100px solid #c9a37c;
+                border-top: 100px solid transparent;
+            }
+            .wax-seal {
+                top: 75px;
+                left: 135px;
+            }
+            .card {
+                padding: 40px 25px 25px 25px;
+                height: 88vh;
+            }
+            .card h1 {
+                font-size: 1.8rem;
+                margin-left: 30px;
+            }
+            .card-body p {
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+            .rose-deco {
+                font-size: 55px;
+                top: 10px;
+                left: 5px;
+            }
+            .heart-deco {
+                bottom: 25px;
+                right: 25px;
+                font-size: 28px;
+            }
+            .signature {
+                font-size: 1.6rem;
+                margin-right: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- MÚSICA DE FONDO -->
+    <audio id="romanticMusic" loop>
+        <source src="musica/procura.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="main-container" id="mainContainer">
+        
+        <!-- Sobre cerrado inicial -->
+        <div class="envelope-wrapper" id="envelopeWrapper">
+            <div class="envelope"></div>
+            <div class="wax-seal"><span>N</span></div>
+            <div class="instruction">Toca el sello para abrir</div>
+        </div>
+        
+        <!-- Carta estilo pergamino con tu nuevo texto -->
+        <div class="card">
+            <div class="rose-deco">🌹</div>
+            <div class="heart-deco">❤️</div>
+            
+            <h1>Para Mi Ojos de Buho</h1>
+            <div class="card-body">
+                <p>Hoy cumplimos nuestro primer mes juntos.</p>
+                <p>Y es extraño pensar en ello.</p>
+                <p>Porque cuando miro hacia atrás, siento que el tiempo ha pasado tan rápido. Apenas parece ayer cuando volvimos a encontrarnos, cuando nuestras historias volvieron a cruzarse y nuestros caminos, que parecían avanzar por direcciones distintas, decidieron caminar uno junto al otro.</p>
+                <p>A veces pienso que el destino o la vida tiene formas curiosas de actuar.</p>
+                <p>Porque hubo momentos en los que el mundo pareció empeñarse en alejarnos. Circunstancias, distancias, tiempos distintos, decisiones diferentes. Como si el mundo quisiera probar si aquello que estaba destinado a suceder encontraría la manera de ocurrir.</p>
+                <p>Y ocurrió.</p>
+                <p>Porque desde el momento en que volví a verte, algo dentro de mí supo que no quería perderte otra vez.</p>
+                <p>Y si algo he aprendido en todo este tiempo, es que hay personas que llegan a nuestra vida por casualidad y otras que parecen haber estado escribiendo su nombre en nuestra historia mucho antes de que nos diéramos cuenta.</p>
+                <p>Tú eres una de esas personas.</p>
+                <p>No llegaste para cambiar mi camino.</p>
+                <p>Llegaste para caminarlo conmigo.</p>
+                <p>Y desde entonces, los días tienen algo diferente.</p>
+                <p>No porque antes faltara felicidad, sino porque contigo descubrí una alegría que no conocía. Una alegría que aparece en los mensajes inesperados, en las conversaciones que duran horas, en las miradas que dicen más que las palabras y en los pequeños momentos que terminan convirtiéndose en recuerdos inolvidables.</p>
+                <p>Hay recuerdos que guardaré siempre.</p>
+                <p>Nuestro primer baile.</p>
+                <p>Nuestro primer helado juntos.</p>
+                <p>Las caminatas.</p>
+                <p>Las conversaciones interminables.</p>
+                <p>La primera vez que renegaste porque te hice esperar.</p>
+                <p>Las risas.</p>
+                <p>Los silencios cómodos.</p>
+                <p>Y cada instante que poco a poco fue construyendo este pequeño universo que compartimos.</p>
+                <p>Pero entre todos esos recuerdos hay uno que ocupa un lugar especial.</p>
+                <p>La primera vez que te vi y bailamos juntos.</p>
+                <p>Porque no fue solamente un baile.</p>
+                <p>Fue el instante en que el mundo pareció detenerse por un momento.</p>
+                <p>Fue sentir que el tiempo desaparecía y que solo existíamos tú y yo.</p>
+                <p>Fue descubrir que un simple instante puede quedarse grabado para siempre en el corazón de una persona.</p>
+                <p>Y desde entonces, cada día que pasa me convenzo más de algo.</p>
+                <p>Que de todas las casualidades que pudieron ocurrir, mi favorita fue encontrarte.</p>
+                <p>Que de todas las historias que pude vivir, mi favorita es la que estoy escribiendo contigo.</p>
+                <p>Y que de todos los lugares en los que podría estar, mi lugar favorito es aquel en el que estás tú.</p>
+                <p>Hoy celebramos un mes como enamorados.</p>
+                <p>Pero en mi corazón siento que estamos celebrando mucho más que eso.</p>
+                <p>Celebramos cada paso que nos llevó hasta aquí.</p>
+                <p>Cada coincidencia.</p>
+                <p>Cada conversación.</p>
+                <p>Cada recuerdo.</p>
+                <p>Cada abrazo.</p>
+                <p>Y cada día que eliges quedarte a mi lado.</p>
+                <p>Feliz primer mes, mi amor.</p>
+                <p>Y si el destino hizo tanto para volver a cruzar nuestros caminos, prometo hacer todo lo que esté en mis manos para seguir caminando junto a ti.</p>
+            </div>
+            <div class="signature">Contigo, Frank ❤️</div>
+        </div>
+
+    </div>
+
+    <!-- SCRIPT INTERACTIVO -->
+    <script>
+        const container = document.getElementById('mainContainer');
+        const envelope = document.getElementById('envelopeWrapper');
+        const music = document.getElementById('romanticMusic');
+
+        music.volume = 0.5;
+
+        envelope.addEventListener('click', () => {
+            container.classList.add('open');
+            music.play().catch(error => {
+                console.log("Música lista tras la interacción.");
+            });
+        });
+    </script>
+</body>
+</html>
