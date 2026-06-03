@@ -321,9 +321,9 @@
 </head>
 <body>
 
-    <!-- MÚSICA DE FONDO -->
-    <audio id="romanticMusic" loop>
-        <source src="musica/procura.mp3" type="audio/mpeg">
+    <!-- MÚSICA DE FONDO (Con propiedad autoplay nativa por si acaso) -->
+    <audio id="romanticMusic" loop autoplay>
+        <source src="musica/stand.mp3" type="audio/mpeg">
     </audio>
 
     <div class="main-container" id="mainContainer">
@@ -390,7 +390,7 @@
 
     </div>
 
-    <!-- SCRIPT INTERACTIVO -->
+    <!-- SCRIPT INTERACTIVO OPTIMIZADO -->
     <script>
         const container = document.getElementById('mainContainer');
         const envelope = document.getElementById('envelopeWrapper');
@@ -398,11 +398,29 @@
 
         music.volume = 0.5;
 
-        envelope.addEventListener('click', () => {
-            container.classList.add('open');
-            music.play().catch(error => {
-                console.log("Música lista tras la interacción.");
+        // Función para intentar arrancar la música al instante
+        function tryAutoplay() {
+            music.play().then(() => {
+                // Si el navegador lo permite sin clics, removemos los escuchadores globales
+                document.removeEventListener('click', tryAutoplay);
+                document.removeEventListener('touchstart', tryAutoplay);
+            }).catch(error => {
+                console.log("Autoplay bloqueado por el navegador. Esperando interacción inicial...");
             });
+        }
+
+        // Ejecutar intento apenas carga el script
+        tryAutoplay();
+
+        // Forzar reproducción al primer toque en cualquier parte de la pantalla (evita restricciones)
+        document.addEventListener('click', tryAutoplay);
+        document.addEventListener('touchstart', tryAutoplay);
+
+        // Control específico de apertura del sobre
+        envelope.addEventListener('click', (e) => {
+            e.stopPropagation(); // Evita conflictos con el evento global
+            container.classList.add('open');
+            music.play(); 
         });
     </script>
 </body>
