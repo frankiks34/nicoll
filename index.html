@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para Mi Amor ❤️</title>
-    <!-- Fuentes clásicas y cursivas para el estilo pergamino -->
+    <title>Para Mi Luna 🌙</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
     <style>
         /* --- ESTILOS GLOBALES --- */
@@ -15,8 +14,8 @@
         }
 
         body {
-            /* Fondo oscuro tipo madera o mesa antigua para resaltar el pergamino */
-            background: linear-gradient(135deg, #2b1d15 0%, #170f0a 100%);
+            /* Fondo de cielo nocturno estrellado */
+            background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
             font-family: 'Lora', serif;
             display: flex;
             justify-content: center;
@@ -24,6 +23,29 @@
             height: 100vh;
             overflow: hidden;
             perspective: 1500px;
+        }
+
+        /* Pequeñas estrellas de fondo (CSS puro) */
+        body::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(1px 1px at 20px 30px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 40px 70px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(1.5px 1.5px at 90px 40px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 160px 120px, #e0f2fe, rgba(0,0,0,0));
+            background-repeat: repeat;
+            background-size: 200px 200px;
+            opacity: 0.5;
+            z-index: 1;
+            animation: twinkle 5s infinite alternate;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.3; }
+            100% { opacity: 0.8; }
         }
 
         /* --- CONTENEDOR PRINCIPAL --- */
@@ -38,7 +60,7 @@
             z-index: 5;
         }
 
-        /* --- EL SOBRE TIPO KRAFT ANTIGUO --- */
+        /* --- EL SOBRE AZUL NOCTURNO --- */
         .envelope-wrapper {
             position: absolute;
             width: 420px;
@@ -56,10 +78,9 @@
             position: relative;
             width: 100%;
             height: 100%;
-            background-color: #b58d66; /* Marrón kraft base */
+            background-color: #1a233a; /* Azul noche profundo */
             border-radius: 4px 4px 12px 12px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), inset 0 0 30px rgba(70, 45, 20, 0.3);
-            background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8), inset 0 0 30px rgba(0, 15, 30, 0.5);
         }
 
         /* Solapa superior */
@@ -70,10 +91,10 @@
             z-index: 3;
             border-left: 210px solid transparent;
             border-right: 210px solid transparent;
-            border-top: 150px solid #a37b54; 
+            border-top: 150px solid #141b2d; /* Tono más oscuro para dar profundidad */
             transform-origin: top;
             transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.1s, z-index 0.2s ease;
-            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));
         }
 
         /* Solapas laterales e inferior */
@@ -83,41 +104,39 @@
             bottom: 0;
             width: 0;
             height: 0;
-            border-left: 210px solid #c29b74;
-            border-right: 210px solid #c29b74;
-            border-bottom: 130px solid #c9a37c;
+            border-left: 210px solid #202b46;
+            border-right: 210px solid #202b46;
+            border-bottom: 130px solid #263353;
             border-top: 130px solid transparent;
             border-radius: 0 0 12px 12px;
             z-index: 4;
         }
 
-        /* Sello de cera rojo intenso y clásico */
+        /* Sello de plata/luna */
         .wax-seal {
             position: absolute;
             top: 120px;
             left: 185px;
             width: 50px;
             height: 50px;
-            background: radial-gradient(circle, #a81c1c 0%, #750e0e 100%);
+            background: radial-gradient(circle, #f8fafc 0%, #94a3b8 100%);
             border-radius: 50%;
             z-index: 6;
             transition: all 0.4s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5), inset 0 2px 4px rgba(255,255,255,0.2);
-            border: 2px solid #570a0a;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.7), inset 0 2px 4px rgba(255,255,255,0.8);
+            border: 2px solid #64748b;
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
         .wax-seal span {
-            color: #ffcccc;
-            font-family: 'Dancing Script', cursive;
-            font-size: 1.5rem;
-            font-weight: bold;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+            color: #0f172a;
+            font-size: 1.3rem;
+            text-shadow: 1px 1px 1px rgba(255,255,255,0.8);
         }
 
-        /* --- LA CARTA ESTILO PERGAMINO VINTAGE --- */
+        /* --- LA CARTA ESTILO CRISTAL NOCTURNO --- */
         .card {
             position: fixed;
             top: 50%;
@@ -125,12 +144,12 @@
             width: 90%;
             max-width: 650px;
             height: 85vh;
-            /* Fondo de pergamino con bordes oscurecidos */
-            background-color: #eaddcf;
-            background-image: 
-                radial-gradient(circle at center, transparent 40%, rgba(120, 80, 40, 0.4) 110%),
-                url('https://www.transparenttextures.com/patterns/old-paper.png');
-            border-radius: 6px;
+            /* Fondo oscuro translúcido con efecto cristal */
+            background-color: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
             padding: 50px 45px 40px 45px;
             z-index: -1;
             opacity: 0;
@@ -139,18 +158,19 @@
             display: flex;
             flex-direction: column;
             box-shadow: 
-                inset 0 0 60px rgba(100, 60, 20, 0.3), /* Quemado interior */
-                0 30px 70px rgba(0, 0, 0, 0.6);
+                inset 0 0 60px rgba(255, 255, 255, 0.05),
+                0 30px 70px rgba(0, 0, 0, 0.8),
+                0 0 20px rgba(186, 230, 253, 0.2); /* Resplandor lunar */
         }
 
-        /* Elementos decorativos inspirados en la imagen original */
+        /* Elementos decorativos de la luna */
         .rose-deco {
             position: absolute;
             top: 15px;
-            left: 15px;
-            font-size: 70px;
-            transform: rotate(-20deg);
-            filter: drop-shadow(3px 5px 4px rgba(0,0,0,0.4)) contrast(1.1) brightness(0.9);
+            left: 20px;
+            font-size: 60px;
+            transform: rotate(-10deg);
+            filter: drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.5));
             z-index: 10;
         }
 
@@ -159,30 +179,29 @@
             bottom: 35px;
             right: 40px;
             font-size: 35px;
-            color: #d11f1f;
-            filter: drop-shadow(2px 3px 3px rgba(0,0,0,0.3));
-            animation: beat 2s infinite;
+            filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.4));
+            animation: float 3s infinite ease-in-out;
         }
 
-        @keyframes beat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-10px) scale(1.05); }
         }
 
         /* Encabezado */
         .card h1 {
-            font-size: 2.2rem;
-            color: #4a2e15;
+            font-size: 2.5rem;
+            color: #e0f2fe; /* Tono celeste muy claro */
             text-align: center;
             font-family: 'Dancing Script', cursive;
             font-weight: 700;
             margin-bottom: 25px;
             flex-shrink: 0;
-            text-shadow: 1px 1px 1px rgba(255,255,255,0.4);
-            margin-left: 50px; /* Para no chocar con la rosa */
+            text-shadow: 0 0 10px rgba(224, 242, 254, 0.6);
+            margin-left: 50px;
         }
 
-        /* Cuerpo del mensaje pergamino */
+        /* Cuerpo del mensaje */
         .card-body {
             overflow-y: auto;
             flex-grow: 1;
@@ -192,24 +211,24 @@
         }
 
         .card-body p {
-            font-size: 1.05rem;
-            line-height: 1.7;
-            color: #3b2a1a;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #cbd5e1; /* Gris claro/plateado */
             text-align: justify;
-            margin-bottom: 18px;
-            text-shadow: 0px 1px 1px rgba(255,255,255,0.2);
+            margin-bottom: 20px;
+            text-shadow: 0px 1px 2px rgba(0,0,0,0.8);
         }
 
-        /* Scrollbar vintage disimulado */
+        /* Scrollbar lunar disimulado */
         .card-body::-webkit-scrollbar {
-            width: 6px;
+            width: 4px;
         }
         .card-body::-webkit-scrollbar-track {
-            background: rgba(160, 110, 70, 0.1);
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 10px;
         }
         .card-body::-webkit-scrollbar-thumb {
-            background: #8c603a;
+            background: #94a3b8;
             border-radius: 10px;
         }
 
@@ -217,12 +236,12 @@
         .signature {
             font-size: 2rem;
             text-align: right;
-            color: #4a2e15;
+            color: #e0f2fe;
             font-family: 'Dancing Script', cursive;
             margin-top: 15px;
-            margin-right: 80px; /* Espacio para el corazón */
+            margin-right: 80px;
             flex-shrink: 0;
-            text-shadow: 1px 1px 1px rgba(255,255,255,0.4);
+            text-shadow: 0 0 8px rgba(224, 242, 254, 0.5);
         }
 
         /* --- ESTADO ABIERTO INTERACTIVO --- */
@@ -255,7 +274,7 @@
             bottom: -60px;
             width: 100%;
             text-align: center;
-            color: #c29b74;
+            color: #94a3b8;
             font-size: 0.95rem;
             letter-spacing: 2px;
             font-family: 'Lora', serif;
@@ -264,9 +283,9 @@
         }
 
         @keyframes softPulse {
-            0% { opacity: 0.5; }
+            0% { opacity: 0.4; }
             50% { opacity: 1; }
-            100% { opacity: 0.5; }
+            100% { opacity: 0.4; }
         }
 
         /* Responsivo celulares */
@@ -278,12 +297,12 @@
             .envelope::before {
                 border-left: 160px solid transparent;
                 border-right: 160px solid transparent;
-                border-top: 115px solid #a37b54;
+                border-top: 115px solid #141b2d;
             }
             .envelope::after {
-                border-left: 160px solid #c29b74;
-                border-right: 160px solid #c29b74;
-                border-bottom: 100px solid #c9a37c;
+                border-left: 160px solid #202b46;
+                border-right: 160px solid #202b46;
+                border-bottom: 100px solid #263353;
                 border-top: 100px solid transparent;
             }
             .wax-seal {
@@ -295,17 +314,17 @@
                 height: 88vh;
             }
             .card h1 {
-                font-size: 1.8rem;
+                font-size: 2rem;
                 margin-left: 30px;
             }
             .card-body p {
-                font-size: 0.95rem;
+                font-size: 1rem;
                 line-height: 1.6;
             }
             .rose-deco {
-                font-size: 55px;
-                top: 10px;
-                left: 5px;
+                font-size: 45px;
+                top: 15px;
+                left: 10px;
             }
             .heart-deco {
                 bottom: 25px;
@@ -313,7 +332,7 @@
                 font-size: 28px;
             }
             .signature {
-                font-size: 1.6rem;
+                font-size: 1.7rem;
                 margin-right: 60px;
             }
         }
@@ -321,76 +340,36 @@
 </head>
 <body>
 
-    <!-- MÚSICA DE FONDO (Con propiedad autoplay nativa por si acaso) -->
     <audio id="romanticMusic" loop autoplay>
-        <source src="musica/stand.mp3" type="audio/mpeg">
+        <source src="musica/bous.mp3" type="audio/mpeg">
     </audio>
 
     <div class="main-container" id="mainContainer">
         
-        <!-- Sobre cerrado inicial -->
         <div class="envelope-wrapper" id="envelopeWrapper">
             <div class="envelope"></div>
-            <div class="wax-seal"><span>N</span></div>
+            <div class="wax-seal"><span>🌙</span></div>
             <div class="instruction">Toca el sello para abrir</div>
         </div>
         
-        <!-- Carta estilo pergamino con tu nuevo texto -->
         <div class="card">
-            <div class="rose-deco">🌹</div>
-            <div class="heart-deco">❤️</div>
+            <div class="rose-deco">🌕</div>
+            <div class="heart-deco">✨</div>
             
-            <h1>Para Mi Ojos de Buho</h1>
+            <h1>Para Mi Luna</h1>
             <div class="card-body">
-                <p>Hoy cumplimos nuestro primer mes juntos.</p>
-                <p>Y es extraño pensar en ello.</p>
-                <p>Porque cuando miro hacia atrás, siento que el tiempo ha pasado tan rápido. Apenas parece ayer cuando volvimos a encontrarnos, cuando nuestras historias volvieron a cruzarse y nuestros caminos, que parecían avanzar por direcciones distintas, decidieron caminar uno junto al otro.</p>
-                <p>A veces pienso que el destino o la vida tiene formas curiosas de actuar.</p>
-                <p>Porque hubo momentos en los que el mundo pareció empeñarse en alejarnos. Circunstancias, distancias, tiempos distintos, decisiones diferentes. Como si el mundo quisiera probar si aquello que estaba destinado a suceder encontraría la manera de ocurrir.</p>
-                <p>Y ocurrió.</p>
-                <p>Porque desde el momento en que volví a verte, algo dentro de mí sabia que ya no nos ibamos a volver a separar.</p>
-                <p>Y si algo he aprendido en todo este tiempo, es que hay personas que llegan a nuestra vida por casualidad y otras que parecen haber estado escribiendo su nombre en nuestra historia mucho antes de que nos diéramos cuenta.</p>
-                <p>Tú eres una de esas personas.</p>
-                <p>No llegaste para cambiar mi camino.</p>
-                <p>Llegaste para caminarlo conmigo.</p>
-                <p>Y desde entonces, los días tienen algo diferente.</p>
-                <p>No porque antes faltara felicidad, sino porque contigo descubrí una alegría que no conocía. Una alegría que aparece en los mensajes inesperados, en las conversaciones que duran horas, en las miradas que dicen más que las palabras y en los pequeños momentos que terminan convirtiéndose en recuerdos inolvidables.</p>
-                <p>Hay recuerdos que guardaré siempre.</p>
-                <p>Nuestro primer baile.</p>
-                <p>Nuestro primer helado juntos.</p>
-                <p>Las caminatas.</p>
-                <p>Las conversaciones interminables.</p>
-                <p>La primera vez que renegaste porque te hice esperar.</p>
-                <p>Las risas.</p>
-                <p>Los silencios cómodos.</p>
-                <p>Y cada instante que poco a poco fue construyendo este pequeño universo que compartimos.</p>
-                <p>Pero entre todos esos recuerdos hay uno que ocupa un lugar especial.</p>
-                <p>La primera vez que te vi y bailamos juntos.</p>
-                <p>Porque no fue solamente un baile.</p>
-                <p>Fue el instante en que el mundo pareció detenerse por un momento.</p>
-                <p>Fue sentir que el tiempo desaparecía y que solo existíamos tú y yo.</p>
-                <p>Fue descubrir que un simple instante puede quedarse grabado para siempre en el corazón de una persona.</p>
-                <p>Y desde entonces, cada día que pasa me convenzo más de algo.</p>
-                <p>Que de todas las casualidades que pudieron ocurrir, mi favorita fue encontrarte.</p>
-                <p>Que de todas las historias que pude vivir, mi favorita es la que estoy escribiendo contigo.</p>
-                <p>Y que de todos los lugares en los que podría estar, mi lugar favorito es aquel en el que estás tú.</p>
-                <p>Hoy celebramos un mes como enamorados.</p>
-                <p>Pero en mi corazón siento que estamos celebrando mucho más que eso.</p>
-                <p>Celebramos cada paso que nos llevó hasta aquí.</p>
-                <p>Cada coincidencia.</p>
-                <p>Cada conversación.</p>
-                <p>Cada recuerdo.</p>
-                <p>Cada abrazo.</p>
-                <p>Y cada día que eliges quedarte a mi lado.</p>
-                <p>Feliz primer mes, mi amor.</p>
-                <p>Y si el destino hizo tanto para volver a cruzar nuestros caminos, prometo hacer todo lo que esté en mis manos para seguir caminando junto a ti.</p>
+                <p>Mi amor, el sentimiento que tengo contigo es como cuando al final del día el sol se pierde en la inmensidad del océano, el cielo pierde su color, las aves dejan de cantar y poco a poco el silencio se apodera del mundo.</p>
+                <p>Pero entonces, entre la oscuridad, aparece una luz más suave, más tranquila, una luz que no intenta competir con el brillo del día, pero que aun así es capaz de transformar todo lo que toca.</p>
+                <p>El mar se tranquiliza, el cielo brilla de otra manera enseñando su rasgo más bonito entre miles de luces en el cielo que nos hacen abrir nuestra imaginación. Al final, la noche deja de parecer el final de algo para convertirse en el comienzo de algo distinto.</p>
+                <p>Así es como me haces sentir.</p>
+                <p>Porque con tu sola presencia haces que incluso los momentos más simples tengan una belleza que antes no veía.</p>
+                <p>Por eso tú eres mi luna, mi hermosa mujer.</p>
             </div>
-            <div class="signature">Contigo, Frank ❤️</div>
+            <div class="signature">Contigo, Frank 🤍</div>
         </div>
 
     </div>
 
-    <!-- SCRIPT INTERACTIVO OPTIMIZADO -->
     <script>
         const container = document.getElementById('mainContainer');
         const envelope = document.getElementById('envelopeWrapper');
@@ -398,27 +377,24 @@
 
         music.volume = 0.5;
 
-        // Función para intentar arrancar la música al instante
+        // Función para intentar arrancar la música
         function tryAutoplay() {
             music.play().then(() => {
-                // Si el navegador lo permite sin clics, removemos los escuchadores globales
                 document.removeEventListener('click', tryAutoplay);
                 document.removeEventListener('touchstart', tryAutoplay);
             }).catch(error => {
-                console.log("Autoplay bloqueado por el navegador. Esperando interacción inicial...");
+                console.log("Esperando interacción para iniciar la música...");
             });
         }
 
-        // Ejecutar intento apenas carga el script
         tryAutoplay();
 
-        // Forzar reproducción al primer toque en cualquier parte de la pantalla (evita restricciones)
         document.addEventListener('click', tryAutoplay);
         document.addEventListener('touchstart', tryAutoplay);
 
-        // Control específico de apertura del sobre
+        // Apertura del sobre
         envelope.addEventListener('click', (e) => {
-            e.stopPropagation(); // Evita conflictos con el evento global
+            e.stopPropagation(); 
             container.classList.add('open');
             music.play(); 
         });
